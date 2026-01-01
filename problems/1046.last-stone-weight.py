@@ -13,7 +13,7 @@ class Solution:
         while len(stones) >= 2:
             x = -heapq.heappop(stones)
             y = -heapq.heappop(stones)
-            if x - y != 0:
+            if x != y:
                 heapq.heappush(stones, -(x - y))
         if stones:
             return -heapq.heappop(stones)
