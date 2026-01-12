@@ -1,7 +1,7 @@
 #
-# @lc app=leetcode id=94 lang=python3
+# @lc app=leetcode id=144 lang=python3
 #
-# [94] Binary Tree Inorder Traversal
+# [144] Binary Tree Preorder Traversal
 #
 
 # @lc code=start
@@ -12,15 +12,16 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         ans = []
         def dfs(node):
             if node is None:
                 return
-            dfs(node.left)
             ans.append(node.val)
+            dfs(node.left)
             dfs(node.right)
         dfs(root)
         return ans
+        
 # @lc code=end
 

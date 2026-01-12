@@ -1,7 +1,7 @@
 #
-# @lc app=leetcode id=94 lang=python3
+# @lc app=leetcode id=404 lang=python3
 #
-# [94] Binary Tree Inorder Traversal
+# [404] Sum of Left Leaves
 #
 
 # @lc code=start
@@ -12,15 +12,22 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        ans = []
+    def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
+        llsum = 0
+        flag = 1
         def dfs(node):
             if node is None:
                 return
+            if node.left is None and node.right is None:
+                nonlocal llsum, flag
+                llsum += node.val
+                flag = 0
+                return
             dfs(node.left)
-            ans.append(node.val)
+            flag = 1
             dfs(node.right)
         dfs(root)
-        return ans
+        return llsum
+
 # @lc code=end
 
