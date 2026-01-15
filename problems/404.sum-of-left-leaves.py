@@ -13,21 +13,18 @@
 #         self.right = right
 class Solution:
     def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
-        llsum = 0
-        flag = 1
-        def dfs(node):
-            if node is None:
-                return
-            if node.left is None and node.right is None:
-                nonlocal llsum, flag
-                llsum += node.val
-                flag = 0
-                return
-            dfs(node.left)
-            flag = 1
-            dfs(node.right)
-        dfs(root)
-        return llsum
+        if not root:
+            return 0
+
+        total = 0
+        if root.left and not root.left.left and not root.left.right:
+            # if left leaf exist
+            total += root.left.val
+
+        total += self.sumOfLeftLeaves(root.left)
+        total += self.sumOfLeftLeaves(root.right)
+        return total
+
 
 # @lc code=end
 
